@@ -1,7 +1,8 @@
-```gitignore
 .env
 cookie.txt
 .venv/
 __pycache__/
 *.pyc
-Evidencias/
+Evidencias/*
+!Evidencias/logs/
+!Evidencias/logs/**
