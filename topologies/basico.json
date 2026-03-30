@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "name": "Topología Básica",
+    "description": "LAN con router, switch y 2 terminales (vpcs)",
+    "author": "FIIS-UNAS",
+    "version": "2"
+  },
+  "nodes": [
+    {
+      "name": "USUARIO1",
+      "template": "vpcs",
+      "type": "vpcs",
+      "left": 260,
+      "top": 520,
+      "icon": "Desktop.png",
+      "ethernet": 1,
+      "delay": 0,
+      "bootstrap": {
+        "mode": "console",
+        "wait_seconds": 5,
+        "lines": [
+          "ip 192.168.10.11/24 192.168.10.1",
+          "save"
+        ]
+      }
+    },
+    {
+      "name": "USUARIO2",
+      "template": "vpcs",
+      "type": "vpcs",
+      "left": 380,
+      "top": 520,
+      "icon": "Desktop.png",
+      "ethernet": 1,
+      "delay": 0,
+      "bootstrap": {
+        "mode": "console",
+        "wait_seconds": 5,
+        "lines": [
+          "ip 192.168.10.12/24 192.168.10.1",
+          "save"
+        ]
+      }
+    },
+    {
+      "name": "SWITCH1",
+      "template": "iol",
+      "type": "iol",
+      "left": 567,
+      "top": 285,
+      "icon": "Switch-3D-L2-S.svg",
+      "image": "i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20180510.bin",
+      "ethernet": 2,
+      "ram": 1024,
+      "delay": 0,
+      "nvram": 1024,
+      "serial": 0
+    },
+    {
+      "name": "R1",
+      "template": "c7200",
+      "type": "dynamips",
+      "left": 609,
+      "top": 111,
+      "icon": "Router-3D-Gen2-S.svg",
+      "image": "c7200-adventerprisek9-mz.152-4.S6.image",
+      "ram": 256,
+      "delay": 0,
+      "nvram": 128,
+      "idlepc": "0x62f21000",
+      "slot1": "PA-FE-TX",
+      "slot2": "PA-FE-TX",
+      "bootstrap": {
+        "mode": "console",
+        "wait_seconds": 60,
+        "lines": [
+          "",
+          "",
+          "enable",
+          "terminal length 0",
+          "conf t",
+          "no ip domain-lookup",
+          "interface FastEthernet1/0",
+          "ip address 192.168.10.1 255.255.255.0",
+          "no shutdown",
+          "end",
+          "wr mem"
+        ]
+      }
+    }
+  ],
+  "links": [
+    {
+      "a": {
+        "node": "USUARIO1",
+        "iface": "eth0"
+      },
+      "b": {
+        "node": "SWITCH1",
+        "iface": "e0/1"
+      }
+    },
+    {
+      "a": {
+        "node": "USUARIO2",
+        "iface": "eth0"
+      },
+      "b": {
+        "node": "SWITCH1",
+        "iface": "e0/2"
+      }
+    },
+    {
+      "a": {
+        "node": "SWITCH1",
+        "iface": "e0/0"
+      },
+      "b": {
+        "node": "R1",
+        "iface": "fa1/0"
+      }
+    }
+  ]
+}
