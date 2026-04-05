@@ -1,0 +1,71 @@
+✅ Login exitoso
+🗑️ Laboratorio eliminado: PPP_AVANZADO.unl
+✅ Laboratorio creado: PPP_AVANZADO.unl
+✅ Nodo creado: SW1
+✅ Nodo creado: SW2
+✅ Nodo creado: SW3
+✅ Nodo creado: R1
+✅ Nodo creado: R2
+✅ Nodo creado: R3
+✅ Nodo creado: PC5
+✅ Nodo creado: PC7
+✅ Nodo creado: PC13
+✅ Nodo creado: PC17
+✅ Nodo creado: PC21
+🔗 Conexión exitosa: SW1:e0/0 <-> R1:fa0/0
+🔗 Conexión exitosa: R1:fa1/0 <-> R2:fa1/0
+🔗 Conexión exitosa: R2:fa2/0 <-> R3:fa2/0
+🔗 Conexión exitosa: R3:fa1/0 <-> SW3:e0/1
+🔗 Conexión exitosa: PC5:eth0 <-> SW1:e1/0
+🔗 Conexión exitosa: PC7:eth0 <-> SW1:e1/1
+🔗 Conexión exitosa: SW2:e0/0 <-> R2:fa0/0
+🔗 Conexión exitosa: PC13:eth0 <-> SW2:e1/0
+🔗 Conexión exitosa: PC17:eth0 <-> SW2:e1/1
+🔗 Conexión exitosa: PC21:eth0 <-> SW3:e1/1
+🎉 Topología creada exitosamente
+▶️ Iniciando nodos...
+✅ Nodo iniciado: SW1
+✅ Nodo iniciado: SW2
+✅ Nodo iniciado: SW3
+✅ Nodo iniciado: R1
+✅ Nodo iniciado: R2
+✅ Nodo iniciado: R3
+✅ Nodo iniciado: PC5
+✅ Nodo iniciado: PC7
+✅ Nodo iniciado: PC13
+✅ Nodo iniciado: PC17
+✅ Nodo iniciado: PC21
+🧩 Aplicando configuraciones:
+➡️ Configuración en: SW1
+🖧 Conectando a consola: 192.168.10.132:32769 (espera 180s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: SW2
+🖧 Conectando a consola: 192.168.10.132:32770 (espera 180s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: SW3
+🖧 Conectando a consola: 192.168.10.132:32771 (espera 200s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: R1
+🖧 Conectando a consola: 192.168.10.132:32772 (espera 240s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: R2
+🖧 Conectando a consola: 192.168.10.132:32773 (espera 260s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: R3
+🖧 Conectando a consola: 192.168.10.132:32774 (espera 240s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: PC5
+🖧 Conectando a consola: 192.168.10.132:32775 (espera 25s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: PC7
+🖧 Conectando a consola: 192.168.10.132:32776 (espera 25s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: PC13
+🖧 Conectando a consola: 192.168.10.132:32777 (espera 25s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: PC17
+🖧 Conectando a consola: 192.168.10.132:32778 (espera 25s)
+✅ Configuración aplicada correctamente
+➡️ Configuración en: PC21
+🖧 Conectando a consola: 192.168.10.132:32779 (espera 30s)
+✅ Configuración aplicada correctamente

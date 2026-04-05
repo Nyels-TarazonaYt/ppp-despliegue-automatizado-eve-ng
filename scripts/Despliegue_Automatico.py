@@ -18,16 +18,12 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
-# -------------------------
 # Paths del proyecto
-# -------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 TOPO_DIR = PROJECT_ROOT / "topologies"
 EVID_LOG_DIR = PROJECT_ROOT / "Evidencias" / "logs"
 
-# -------------------------
 # Defaults
-# -------------------------
 DEFAULT_BASE = os.getenv("EVE_BASE", "") or "http://192.168.10.132"
 DEFAULT_USER = os.getenv("EVE_USER", "admin")
 DEFAULT_PASS = os.getenv("EVE_PASS", "eve")
@@ -80,9 +76,7 @@ def make_logger(dst_labfile: str, nivel: str, enabled: bool = True):
 
     return _log, log_path
 
-# -------------------------
 # Validación JSON
-# -------------------------
 def validate_topology(topo: Dict[str, Any]) -> List[str]:
     errors: List[str] = []
 
@@ -143,9 +137,7 @@ def precheck_topology(topo: Dict[str, Any]) -> List[str]:
 
     return warns
 
-# -------------------------
 # API EVE-NG
-# -------------------------
 class EveAPI:
     def __init__(self, base: str, user: str, password: str, logger):
         self.base = base.rstrip("/")
@@ -415,9 +407,7 @@ class EveAPI:
             time.sleep(0.25)
         raise RuntimeError(f"No se pudo conectar la interfaz del nodo {node_id}. Último error: {last}")
 
-# -------------------------
-# Bridge XY
-# -------------------------
+# Posiciones
 def compute_bridge_xy(a_pos: Tuple[int, int], b_pos: Tuple[int, int], i: int, max_left: int, max_top: int) -> Tuple[int, int]:
     ax, ay = a_pos
     bx, by = b_pos
@@ -441,9 +431,7 @@ def compute_bridge_xy(a_pos: Tuple[int, int], b_pos: Tuple[int, int], i: int, ma
 
     return clamp(cx, 0, max_left + 200), clamp(cy, 0, max_top + 200)
 
-# -------------------------
-# Telnet sin telnetlib
-# -------------------------
+# Configuración Telnet
 IAC, DONT, DO, WONT, WILL, SB, SE = 255, 254, 253, 252, 251, 250, 240
 
 def _telnet_consume_iac(data: bytes, sock: socket.socket) -> None:
@@ -585,9 +573,7 @@ def telnet_send_lines(host: str, port: int, lines: List[str], wait_seconds: int,
     except Exception as e:
         log(f"❌ Error al aplicar la configuración por consola: {e}")
 
-# -------------------------
-# Start y bootstrap
-# -------------------------
+# Start y Configuraciones
 def _node_is_running(node_info: Dict[str, Any]) -> bool:
     try:
         return int(node_info.get("status", 0)) != 0
@@ -701,9 +687,7 @@ def apply_bootstrap_all(api: EveAPI, labfile: str, topo: Dict[str, Any], id_by_n
         smart = (n.get("type") != "vpcs" and n.get("template") != "vpcs")
         telnet_send_lines(host, int(port), [str(x) for x in lines], wait_seconds, api.log, smart=smart)
 
-# -------------------------
 # Topología
-# -------------------------
 def load_topology(nivel: str) -> Dict[str, Any]:
     topo_path = TOPO_FILES[nivel]
     if not topo_path.exists():
@@ -711,9 +695,7 @@ def load_topology(nivel: str) -> Dict[str, Any]:
     with topo_path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
-# -------------------------
-# Deploy principal
-# -------------------------
+# Despliegue principal
 def deploy(
     api: EveAPI,
     topo: Dict[str, Any],
@@ -805,9 +787,7 @@ def deploy(
     if bootstrap_flag:
         apply_bootstrap_all(api, dst_labfile, topo, id_by_name)
 
-# -------------------------
 # Main
-# -------------------------
 def main():
     load_dotenv_safely(PROJECT_ROOT / ".env")
 
